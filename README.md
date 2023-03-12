@@ -1,7 +1,12 @@
 # Project based on  the React App demo
 
 ## Testing Create React App
-This a sample project for testing front end of the Create React App project. Test cases are created to test against UI requirements created for the appearance of the App. Testing Framework is [TBD].
+This a sample project for testing front end of the Create React App project. Test cases are created to test against UI requirements created for the appearance of the App. Testing Framework is Mocha-Selenium.
+
+## Executing Test Case
+To execute test cases run the following command
+
+### `Mocha [test file]`
 
 # Getting Started with Create React App
 
