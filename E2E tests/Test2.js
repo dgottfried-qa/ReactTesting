@@ -3,39 +3,28 @@ var assert = require('assert');
 var webdriver = require("selenium-webdriver");
 var driver = new webdriver.Builder().forBrowser('chrome').build();
 
-describe("webpage has loaded", () =>{
+
+ describe("webpage should load correctly", () =>{
+    before(() => {
+        //Load webapage
+        driver.get("http://localhost:3000/");
+    });
+
+    it("should have page title", async () => {
+        const pageTitle = await driver.getTitle();
+        assert.equal(pageTitle, "React App");
+    });
+
     it("should display link", async () => {
-        /*
-        driver.navigate().to("http://localhost:3000/")
-        .then(() => driver.findElement(webdriver.By.css("a[data-testid='app-link']")))
-        .then(element => console.log("HREF: " + element.getAttribute("href")));
-        */
+        //var linkTag = driver.findElement(webdriver.By.tagName('a'));
+        var linkTag = driver.findElement(webdriver.By.css("a[data-testid='app-link']"));
+        var link = await linkTag.getAttribute("href")
 
-        before(() => {
-            //Load webapage
-            driver.get("http://localhost:3000/");
-        });
-        
+        assert.equal(link, "https://reactjs.org/");
+    });
 
-/*
-            driver.findElement(webdriver.By.css("a[data-testid='app-link']"))
-                .then(element => {
-                    console.log("in hihihhihhihh");
-                    assert(element).to.not.be.null;
-                });
-    */
-
-        console.log("hi");
-
-        var logo = driver.findElements(webdriver.By.css("a[data-testid='app-link']")).size();
-
-
-        //Assert whether logo is displayed
-       assert.notEqual(logo, 0);
-        
-        after(() => {
-            //clean up
-            driver.quit();
-        });
+    after(() => {
+        //clean up
+        driver.quit();
     });
 });
