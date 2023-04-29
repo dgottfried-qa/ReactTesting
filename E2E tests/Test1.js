@@ -22,6 +22,13 @@ var driver = new webdriver.Builder().forBrowser('chrome').build();
         assert.equal(link, "https://reactjs.org/");
     });
 
+    it("should display edit instructions", async () => {
+        var editText = await driver.findElement(webdriver.By.xpath("/html/body/div/div/header/p")).getText();
+        //console.log(editText);
+        assert.equal(editText, "Edit src/App.js and save to reload.")
+
+    });
+
     after(() => {
         //clean up
         driver.quit();
